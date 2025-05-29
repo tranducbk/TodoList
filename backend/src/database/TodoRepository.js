@@ -10,8 +10,14 @@ function addNewTodo(data) {
     if (!data.title) {
         throw new Error('Title is required');
     }
+    let maxId = 0;
+    for (let i = 0; i < todos.length; i++) {
+        if (todos[i].id > maxId) {
+            maxId = todos[i].id;
+        }
+    }
     const newTodo = {
-        id: todos.length + 1,
+        id: maxId + 1,
         ...data,
         completed: false
     }
